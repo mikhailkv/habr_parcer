@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 from tortoise import Tortoise, run_async
 
 from models import Post
-from settings import DB_URL, FILE_PATH, CHUNK_SIZE, INTERVAL
+from settings import DB_URL, FILE_PATH, CHUNK_SIZE, CRON
 
 
 async def fetch(session: ClientSession, url: str):
@@ -75,7 +75,9 @@ def run_task():
 
 if __name__ == '__main__':
     sys.stdout.write("Start service\n")
-    schedule.every(INTERVAL).seconds.do(run_task)
+    from crontab import CronTab
+    cron = CronTab(crontab=CRON)
+    schedule.every(cron.next(default_utc=True)).seconds.do(run_task)
     while True:
         schedule.run_pending()
         time.sleep(1)

@@ -16,7 +16,7 @@ services:
     container_name: app-service
     command: python -u main.py
     environment:
-      - INTERVAL=1
+      - CRON=* * * * *
       - DB_PORT=5432
       - DB_HOST=db-service
     depends_on:

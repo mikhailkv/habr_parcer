@@ -1,11 +1,11 @@
 import os
 
-INTERVAL = int(os.getenv('INTERVAL', 5))
+CRON = os.getenv('CRON', '* * * * *')
 FILE_PATH = os.getenv('FILE_PATH', 'posts.json')
 
 DB_DATABASE = os.getenv('FILE_PATH', 'database')
 DB_HOST = os.getenv('DB_HOST', 'localhost')
-DB_PORT = os.getenv('DB_PORT', '5432')
+DB_PORT = os.getenv('DB_PORT', '5444')
 DB_PASSWORD = os.getenv('DB_PASSWORD', 'password')
 DB_USER = os.getenv('FDB_USER', 'user')
 
