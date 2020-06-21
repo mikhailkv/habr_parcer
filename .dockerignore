@@ -1,0 +1,12 @@
+**/__pycache__/**
+*.py[cod]
+*$py.class
+.idea
+.gitignore
+Dockerfile
+docker-compose.yml
+.gitlab-ci.yml
+.vscode
+tmp
+.scannerwork
+.git

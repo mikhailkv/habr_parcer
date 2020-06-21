@@ -10,3 +10,14 @@ services:
       - POSTGRES_USER=user
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=database
+  app:
+    image: app:latest
+    restart: always
+    container_name: app-service
+    command: python -u main.py
+    environment:
+      - INTERVAL=1
+      - DB_PORT=5432
+      - DB_HOST=db-service
+    depends_on:
+      - db
