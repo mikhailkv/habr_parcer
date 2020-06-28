@@ -15,9 +15,13 @@ services:
     restart: always
     container_name: app-service
     command: python -u main.py
+#    volumes:
+#      - :/data
+
     environment:
       - CRON=* * * * *
       - DB_PORT=5432
       - DB_HOST=db-service
+#      - FILE_PATH=../data/1.json
     depends_on:
       - db

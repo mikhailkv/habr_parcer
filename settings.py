@@ -3,7 +3,7 @@ import os
 CRON = os.getenv('CRON', '* * * * *')
 FILE_PATH = os.getenv('FILE_PATH', 'posts.json')
 
-DB_DATABASE = os.getenv('FILE_PATH', 'database')
+DB_DATABASE = os.getenv('DB_DATABASE', 'database')
 DB_HOST = os.getenv('DB_HOST', 'localhost')
 DB_PORT = os.getenv('DB_PORT', '5444')
 DB_PASSWORD = os.getenv('DB_PASSWORD', 'password')

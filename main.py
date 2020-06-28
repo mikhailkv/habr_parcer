@@ -1,6 +1,7 @@
 import asyncio
 import logging
 import sys
+from json import JSONDecodeError
 
 from crontab import CronTab
 
@@ -64,12 +65,12 @@ class ImportWorker:
         return res
 
     async def run_task(self):
-        log.info('Run task')
-        # Читаем файл
-        self.file_handler.read_file()
-        # Подключаемся к БД
-        await asyncio.create_task(DBHandler.connect())
         try:
+            log.info('Run task')
+            # Читаем файл
+            self.file_handler.read_file()
+            # Подключаемся к БД
+            await asyncio.create_task(DBHandler.connect())
             for chuck_urls in self.file_handler:
                 # Получаем для обработки часть urls
                 data, done = chuck_urls, True
@@ -77,7 +78,7 @@ class ImportWorker:
                     # по цепочке получаем методы обработчика
                     # результат выполнения метода передаем в следующий
                     data = await self.execute_method(method, **{'data': data})
-        except ImportWorkerError:
+        except (ImportWorkerError, FileNotFoundError, JSONDecodeError):
             log.error('task fail')
         else:
             # Закрываем соединение

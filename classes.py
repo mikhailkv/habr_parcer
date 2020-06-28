@@ -78,11 +78,13 @@ class FileHandler(Handler):
             with open(FILE_PATH, 'r') as file_obj:
                self._validate_data(json.load(file_obj))
         except (JSONDecodeError, FileNotFoundError) as e:
-            sys.stdout.write(f'{str(e)}\n')
+            self.log.error(f'{str(e)}\n')
+            raise e
 
     def __iter__(self):
-        for el in range(0, len(self.data), CHUNK_SIZE):
-            yield self.data[el: el + CHUNK_SIZE]
+        if self.data:
+            for el in range(0, len(self.data), CHUNK_SIZE):
+                yield self.data[el: el + CHUNK_SIZE]
 
     def _validate_data(self, data: List):
         """
