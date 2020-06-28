@@ -5,7 +5,7 @@ git clone git@github.com:mikhailkv/habr_parcer.git
 docker-compose -f docker-compose.yml up 
 ~~~
 
-в env контейнера `app` вы можите передать следующие параметры:
+в env контейнера `app` вы можете передать следующие параметры:
 
 <li> CRON - строка в формате "* * * * *" для установки расписания запуска </li> 
 <li> URL_PATTERN - regex для валидации url </li> 
