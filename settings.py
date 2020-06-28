@@ -11,3 +11,5 @@ DB_USER = os.getenv('FDB_USER', 'user')
 
 DB_URL = f"postgres://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_DATABASE}"
 CHUNK_SIZE = 2
+URL_PATTERN = os.getenv('URL_PATTERN', "(\w*\W*)?\w*(\.(\w)+)+(\W\d+)?(\/\w*(\W*\w)*)*")
+DEBUG = bool(int(os.getenv('DEBUG', 0)))

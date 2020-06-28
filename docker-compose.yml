@@ -11,7 +11,7 @@ services:
       - POSTGRES_PASSWORD=password
       - POSTGRES_DB=database
   app:
-    image: app:latest
+    build: ./
     restart: always
     container_name: app-service
     command: python -u main.py
