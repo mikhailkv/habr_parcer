@@ -58,8 +58,8 @@ class ImportWorker:
             res = await asyncio.wait_for(method(**kwargs), timeout=self.next_run)
         except asyncio.TimeoutError:
             log.error(f'Timeout in method: {method.__name__}')
-            # если не успели выполнить таску до начала
-            # следующей, закрываем соединение рейзим исключение
+            # если не успели выполнить задачу до начала
+            # следующей, закрываем соединение вызываем исключение
             await asyncio.create_task(DBHandler.close())
             raise ImportWorkerError
         return res
@@ -74,8 +74,8 @@ class ImportWorker:
             for chuck_urls in self.file_handler:
                 # Получаем для обработки часть urls
                 data, done = chuck_urls, True
-                for method in self.chain_method:
-                    # по цепочке получаем методы обработчика
+                # по цепочке получаем методы обработчиков
+                for method in self.chain_method:                    
                     # результат выполнения метода передаем в следующий
                     data = await self.execute_method(method, **{'data': data})
         except (ImportWorkerError, FileNotFoundError, JSONDecodeError):
