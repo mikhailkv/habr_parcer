@@ -6,6 +6,7 @@ class Post(Model):
     id = fields.IntField(pk=True)
     title = fields.TextField()
     text = fields.TextField()
+    url = fields.TextField()
 
     class Meta:
         table = "post"
