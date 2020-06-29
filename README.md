@@ -1,4 +1,4 @@
-# Habr parcer
+# Habr parser
 **для старта выполните:**
 ~~~
 git clone git@github.com:mikhailkv/habr_parcer.git
