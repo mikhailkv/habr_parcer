@@ -97,7 +97,7 @@ class ParseHandler(Handler):
 
     async def parse_html(self, data: List) -> List[Dict]:
         """
-        Метод для прасинга html
+        Метод для парсинга html
         """
         res = []
         for url, html in data:
